@@ -1,0 +1,6 @@
+# Exclude compiled executable
+pow11
+
+# Exclude compiled object files
+*.o
+
