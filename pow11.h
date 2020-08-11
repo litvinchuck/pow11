@@ -48,6 +48,8 @@ typedef struct pair
  */
 void move_grid(move_t direction, struct grid* gr);
 
+static void move_up(struct grid* gr);
+
 static void move_right(struct grid* gr);
 
 static void move_down(struct grid* gr);

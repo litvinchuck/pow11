@@ -8,6 +8,7 @@ void move_grid(move_t direction, struct grid* gr)
     switch (direction)
     {
     case UP:
+        move_up(gr);
         break;
     case RIGHT:
         move_right(gr);
@@ -22,6 +23,47 @@ void move_grid(move_t direction, struct grid* gr)
         break;
     }
     add_new_element(gr);
+}
+
+static void move_up(struct grid* gr)
+{
+    uint32_t current_tile;
+    uint32_t next_tile;
+
+    // Ignore the last one, because there are no rows bellow it to move up
+    for (byte_t i = 0, size = get_size(gr); i < (size - 1); i++)
+    {
+        for (byte_t j = 0; j < size; j++)
+        {
+            // And this check??
+            if ((i + 1) < size)
+            {
+                current_tile = get_tile(gr, i, j);
+
+                // Find the closest non-zero tile bellow and move it
+                for (byte_t k = i + 1; k < size; k++)
+                {
+                    next_tile = get_tile(gr, k, j);
+
+                    // Move this bit to other function?
+                    if (next_tile != 0)
+                    {
+                        if (current_tile == next_tile || current_tile == 0)
+                        {
+                            set_tile(gr, i, j, current_tile + next_tile);
+                            set_tile(gr, k, j, 0);
+                            current_tile = get_tile(gr, i, j);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
 }
 
 static void move_right(struct grid* gr)
