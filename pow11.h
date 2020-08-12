@@ -58,4 +58,6 @@ static void move_left(struct grid* gr);
 
 static void add_new_element(struct grid* gr);
 
+static bool move_tiles(struct grid* gr, byte_t curr_i, byte_t curr_j, byte_t next_i, byte_t next_j);
+
 #endif
