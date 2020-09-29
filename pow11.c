@@ -149,7 +149,7 @@ static bool move_tiles(struct grid* gr, byte_t curr_i, byte_t curr_j, byte_t nex
 {
     uint32_t current_tile = get_tile(gr, curr_i, curr_j);
     uint32_t next_tile = get_tile(gr, next_i, next_j);
-    if (current_tile == next_tile || current_tile == 0)
+    if (current_tile == next_tile || current_tile == 0 || next_tile == 0)
     {
         set_tile(gr, curr_i, curr_j, current_tile + next_tile);
         set_tile(gr, next_i, next_j, 0);
